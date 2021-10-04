@@ -38,7 +38,7 @@ class WordGuess:
 	def __create_words(self, relative_path):
 		words_dictionary = {}
 		
-		absolute_path = Path(__file__).parent / relative_path
+		absolute_path = self.__create_absolute_path(relative_path)
 		
 		with open(absolute_path) as csv_file:
 			csv_reader = csv.reader(csv_file)
@@ -46,6 +46,9 @@ class WordGuess:
 				words_dictionary[row[0]] = row[1:]
 				
 		return words_dictionary
+		
+	def __create_absolute_path(self, relative_path):
+		return Path(__file__).parent / relative_path
 		
 	def joined_user_word(self):
 		return "".join(self.user_word)
@@ -120,4 +123,8 @@ class WordGuess:
 			letter = input("\nPlease guess a letter! (a..z): ").lower()
 		return letter 
 
-WordGuess(True)
+#WordGuess(True)
+
+#import os
+#CURR_DIR = os.getcwd()
+#print(CURR_DIR)
